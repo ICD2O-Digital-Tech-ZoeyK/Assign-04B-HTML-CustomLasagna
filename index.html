@@ -1,9 +1,83 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+      <!-- Meta data section -->
+    <meta charset="utf-8">
+    <meta name="description" content="Cold Hot webpage">
+    <meta name="keywords" content="immaculata, ics2o">
+    <meta name="author" content="Zoey Kariyal">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js"></script>
+    
+    <title>Build Your Dream Lasagna 🍝</title>
+
   </head>
   <body>
-    <p>Paragraph</p>
+  
+    <div class="gif-header">
+      <img src="images/garfield.gif" alt="Lasagna Cooking" />
+    </div>
+  
+    <h1>💖 Build Your Dream Lasagna 🍝</h1>
+    <p class="intro">Create a cozy, cheesy masterpiece your Nonna would be proud of! 🧑‍🍳✨</p>
+  
+    <!-- Size (single choice) -->
+    <div class="section">
+      <div class="category-title">📏 Choose Your Size (Pick One)</div>
+      <label><input type="radio" name="size" value="15.00" /> Small (2-3 people) - $15.00</label>
+      <label><input type="radio" name="size" value="20.00" /> Medium (4-5 people) - $20.00</label>
+      <label><input type="radio" name="size" value="28.00" /> Large (6-7 people) - $28.00</label>
+      <label><input type="radio" name="size" value="35.00" /> Extra-Large (8-9 people) - $35.00</label>
+      <label><input type="radio" name="size" value="45.00" /> Family Size (10+ people) - $45.00</label>
+    </div>
+  
+    <!-- Sauces (single choice) -->
+    <div class="section">
+      <div class="category-title">🍅 Choose a Sauce (Pick One)</div>
+      <div id="sauces"></div>
+    </div>
+  
+    <!-- Meats (single choice) -->
+    <div class="section">
+    <div class="category-title">🍖 Pick a Meat (Pick One)</div>
+    <div id="meats"></div>
+    </div>
+
+    <!-- Cheeses (multiple choice, max 3) -->
+    <div class="section">
+      <div class="category-title">🧀 Pick Cheeses (Max 3)</div>
+      <div id="cheeses"></div>
+    </div>
+  
+    <!-- Vegetables (multiple choice) -->
+    <div class="section">
+      <div class="category-title">🥦 Pick Your Veggies (Unlimited!)</div>
+      <div id="vegetables"></div>
+    </div>
+  
+    <button onclick="calculateTotal()">✨ Calculate My Lasagna ✨</button>
+  
+    <div class="totals" id="totals"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="gif-footer">
+      <img src="images/lasgna.gif" alt="Happy Lasagna" height="10000"/>
+      <p class="footer-quote">“Life is full of pasta-bilities.” 💕🍝</p>
+    </div>
+  
+    <script src="js/script.js"></script>
   </body>
 </html>
+  
