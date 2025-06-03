@@ -17,7 +17,7 @@ const sauces = [
     { name: "Pesto", price: 2.00 },
     { name: "Pesto alla Trapanese (Sicilian Pesto)", price: 2.00 }
   ];
-  
+ 
   const cheeses = [
     { name: "Parmesan", price: 2.00 },
     { name: "Mozzarella", price: 3.50 },
@@ -28,7 +28,7 @@ const sauces = [
     { name: "Mascarpone Cheese", price: 3.50 },
     { name: "Romano Cheese", price: 3.50 }
   ];
-  
+ 
   const meats = [
     { name: "Ground Beef", price: 4.00 },
     { name: "Chicken", price: 4.00 },
@@ -38,7 +38,7 @@ const sauces = [
     { name: "Ground Turkey", price: 4.00 },
     { name: "Seafood (Shrimp, Crab, and/or Lobster)", price: 4.00 }
   ];
-  
+ 
   const vegetables = [
     { name: "Garlic", price: 0.15 },
     { name: "Carrots", price: 0.75 },
@@ -61,7 +61,7 @@ const sauces = [
     { name: "Bean Greens", price: 2.50 },
     { name: "Quorn Mince", price: 2.50 }
   ];
-  
+ 
   // Dynamically populate options on page load
   function populateOptions() {
     const saucesDiv = document.getElementById("sauces");
@@ -70,21 +70,21 @@ const sauces = [
       label.innerHTML = `<input type="radio" name="sauce" value="${i}"> ${sauce.name} - $${sauce.price.toFixed(2)}`;
       saucesDiv.appendChild(label);
     });
-  
+ 
     const cheesesDiv = document.getElementById("cheeses");
     cheeses.forEach((cheese, i) => {
       const label = document.createElement("label");
       label.innerHTML = `<input type="checkbox" name="cheese" value="${i}"> ${cheese.name} - $${cheese.price.toFixed(2)}`;
       cheesesDiv.appendChild(label);
     });
-  
+ 
     const meatsDiv = document.getElementById("meats");
     meats.forEach((meat, i) => {
       const label = document.createElement("label");
       label.innerHTML = `<input type="radio" name="meat" value="${i}"> ${meat.name} - $${meat.price.toFixed(2)}`;
       meatsDiv.appendChild(label);
     });
-  
+ 
     const vegetablesDiv = document.getElementById("vegetables");
     vegetables.forEach((veg, i) => {
       const label = document.createElement("label");
@@ -92,13 +92,13 @@ const sauces = [
       vegetablesDiv.appendChild(label);
     });
   }
-  
+ 
   window.onload = populateOptions;
-  
+ 
   function calculateTotal() {
     const totalsDiv = document.getElementById("totals");
     totalsDiv.innerHTML = ""; // Clear previous messages
-  
+ 
     // Check size
     const sizeRadios = document.querySelectorAll('input[name="size"]:checked');
     if (sizeRadios.length === 0) {
@@ -106,7 +106,7 @@ const sauces = [
       return;
     }
     const sizePrice = parseFloat(sizeRadios[0].value);
-  
+ 
     // Check sauce
     const sauceRadios = document.querySelectorAll('input[name="sauce"]:checked');
     if (sauceRadios.length === 0) {
@@ -115,7 +115,7 @@ const sauces = [
     }
     const sauceIndex = parseInt(sauceRadios[0].value);
     const sauce = sauces[sauceIndex];
-  
+ 
     // Check meat
     const meatRadios = document.querySelectorAll('input[name="meat"]:checked');
     if (meatRadios.length === 0) {
@@ -124,7 +124,7 @@ const sauces = [
     }
     const meatIndex = parseInt(meatRadios[0].value);
     const meat = meats[meatIndex];
-  
+ 
     // Check cheeses (multiple choice)
     const cheeseCheckboxes = document.querySelectorAll('input[name="cheese"]:checked');
     if (cheeseCheckboxes.length === 0) {
@@ -136,33 +136,33 @@ const sauces = [
       return;
     }
     const selectedCheeses = Array.from(cheeseCheckboxes).map(cb => cheeses[parseInt(cb.value)]);
-  
+ 
     // Vegetables (multiple choice, no limit)
     const vegetableCheckboxes = document.querySelectorAll('input[name="vegetable"]:checked');
     const selectedVegetables = Array.from(vegetableCheckboxes).map(cb => vegetables[parseInt(cb.value)]);
-  
+ 
     // Calculate subtotal
     let subtotal = sizePrice + sauce.price + meat.price;
     selectedCheeses.forEach(c => subtotal += c.price);
     selectedVegetables.forEach(v => subtotal += v.price);
-  
+ 
     // Calculate HST
     const hst = subtotal * 0.13;
-  
+ 
     // Calculate total
     const total = subtotal + hst;
-  
+ 
     // Build order summary
     let summary = `🎉 Your Delicious Lasagna Order 🎉\n\n`;
     summary += `📏 Size: $${sizePrice.toFixed(2)}\n`;
     summary += `🍅 Sauce: ${sauce.name} ($${sauce.price.toFixed(2)})\n`;
     summary += `🍖 Meat: ${meat.name} ($${meat.price.toFixed(2)})\n`;
-  
+ 
     summary += `🧀 Cheeses (${selectedCheeses.length}):\n`;
     selectedCheeses.forEach(c => {
       summary += `   - ${c.name} ($${c.price.toFixed(2)})\n`;
     });
-  
+ 
     if (selectedVegetables.length > 0) {
       summary += `🥦 Vegetables (${selectedVegetables.length}):\n`;
       selectedVegetables.forEach(v => {
@@ -171,12 +171,11 @@ const sauces = [
     } else {
       summary += "🥦 Vegetables: None\n";
     }
-  
+ 
     summary += `\n💵 Subtotal: $${subtotal.toFixed(2)}\n`;
     summary += `💸 HST (13%): $${hst.toFixed(2)}\n`;
     summary += `💰 Total Price: $${total.toFixed(2)}\n\n`;
     summary += `Thank you for your order! Your lasagna will be ready soon. `;
-  
+ 
     totalsDiv.textContent = summary;
   }
-  
